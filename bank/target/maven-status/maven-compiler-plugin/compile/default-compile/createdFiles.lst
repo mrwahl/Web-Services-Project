@@ -1,0 +1,8 @@
+com\mycompany\bank\resources\JavaEE8Resource.class
+com\mycompany\bank\services\MessageService.class
+com\mycompany\bank\resources\CommentResource.class
+com\mycompany\bank\models\Comment.class
+com\mycompany\bank\models\Message.class
+com\mycompany\bank\JAXRSConfiguration.class
+com\mycompany\bank\services\CommentService.class
+com\mycompany\bank\resources\MessageResource.class
