@@ -74,6 +74,12 @@ public class Customer {
         this.accounts = accounts;
     }
     
+    public String printCustomer() {
+        String str = this.getName()+" "+this.getAddress()+ " "+this.getEmail()+" "+this.getPin();
+        return str;
+    }
+    
+    
     public String printAllAccounts() {
          String allAccs = "";
          for ( int i=0; i<accounts.size(); i++)
