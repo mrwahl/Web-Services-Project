@@ -21,9 +21,10 @@ public class Database {
     public static List<Account> accountDB2 = new ArrayList<>();
     public static List<Transaction> transactionDB = new ArrayList<>();
     public static List<Transaction> transactionDB2 = new ArrayList<>();
-    
+    public static boolean init = true;
     public Database(){
         // transaction data 
+        if(init){
         Transaction t1 = new Transaction (1,"Debit","Bought shoes", 500.0);
         Transaction t2 = new Transaction (2,"Debit","Gucci belt", 450.0); 
         Transaction t3 = new Transaction (3,"Credit","Pizza", 400.0);
@@ -48,8 +49,11 @@ public class Database {
         
         customerDB.add(c1);
         customerDB.add(c2);
+        //so I dont get multiple instances recreated numerous times when I do any request
+        init = false;
     }
     
+    }
     
     public static List<Customer> getCustomersDB() {
         return customerDB;
