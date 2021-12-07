@@ -23,13 +23,13 @@ public class CustomerService {
     public static List<Transaction> tList = new ArrayList<>();
    public CustomerService(){
         //testing some data
-          Transaction t1 = new Transaction (1,"Debit","Bought shoes", 500.0);     
+          Transaction t1 = new Transaction ("Debit","Bought shoes", 500.0);     
           tList.add(t1);         
           ///////////
-          Account a1 = new Account (1,889900, 12345, "Current", 700.0 , tList);
+          Account a1 = new Account (889900, 12345, "Current", 700.0 , tList);
           aList.add(a1);
           //////////
-          Customer c1 = new Customer (1, "John Blue","123 yellow road", "john123@gmail.com", 4545 , aList);
+          Customer c1 = new Customer ("John Blue","123 yellow road", "john123@gmail.com", 4545 , aList);
           cList.add(c1);
        
    }

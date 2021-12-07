@@ -16,7 +16,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Account {
-    private int id;
     private int sortCode;
     private int accNumber;
     private String accType;
@@ -26,8 +25,7 @@ public class Account {
     public Account(){
     }
 
-    public Account(int id,int sortCode, int accNumber, String accType, double currentBalance, List<Transaction> transactions) {
-        this.id = id;
+    public Account(int sortCode, int accNumber, String accType, double currentBalance, List<Transaction> transactions) {
         this.sortCode = sortCode;
         this.accNumber = accNumber;
         this.accType = accType;
@@ -70,16 +68,8 @@ public class Account {
     
     // print account
     public String printAccount() {
-        String str = this.getId()+" "+ this.getSortCode()+" "+this.getAccNumber()+" "+ this.getAccType()+" "+ this.getCurrentBalance();
+        String str = this.getSortCode()+" "+this.getAccNumber()+" "+ this.getAccType()+" "+ this.getCurrentBalance();
         return str;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
     
     //print all transactions 
