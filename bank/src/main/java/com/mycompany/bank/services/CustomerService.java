@@ -8,6 +8,7 @@ package com.mycompany.bank.services;
 import com.mycompany.bank.models.Account;
 import com.mycompany.bank.models.Customer;
 import com.mycompany.bank.models.Transaction;
+import com.mycompany.myblog.databases.Database;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,19 +19,10 @@ import java.util.List;
  */
 public class CustomerService {
     
-    public static List<Customer> cList = new ArrayList<>();
-    public static List<Account> aList = new ArrayList<>();
-    public static List<Transaction> tList = new ArrayList<>();
+    Database d = new Database();
+    private List<Customer> cList = d.getCustomersDB();
    public CustomerService(){
-        //testing some data
-          Transaction t1 = new Transaction ("Debit","Bought shoes", 500.0);     
-          tList.add(t1);         
-          ///////////
-          Account a1 = new Account (889900, 12345, "Current", 700.0 , tList);
-          aList.add(a1);
-          //////////
-          Customer c1 = new Customer ("John Blue","123 yellow road", "john123@gmail.com", 4545 , aList);
-          cList.add(c1);
+        
        
    }
     // get all customers , just to have somehting to test for the API if its working or not
@@ -38,9 +30,16 @@ public class CustomerService {
         return cList;
     }
    
+   public Customer getCustomer(int id) {
+        return cList.get(id-1);
+    }
+    public void setCustomer(int id, Customer customerIn) {
+        cList.set(id-1, customerIn);
+    }
+   
     
     public Customer createCustomer(Customer c) {
-	
+	c.setId(cList.size() + 1);
 	cList.add(c);
 	
         System.out.println("Updated Message:"+c.printCustomer());

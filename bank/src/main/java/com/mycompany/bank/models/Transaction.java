@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Filip
  */
 public class Transaction {
+    private int id;
     private String transactionType;
     private Date paid;
     private String transactionDescription;
@@ -20,13 +21,24 @@ public class Transaction {
     public Transaction(){
     }
 
-    public Transaction(String transactionType, String transactionDescription, double postBalance) {
+    public Transaction(int id,String transactionType, String transactionDescription, double postBalance) {
+        this.id = id;
         this.transactionType = transactionType;
         this.paid = new Date();
         this.transactionDescription = transactionDescription;
         this.postBalance = postBalance;
     }
 //getters and setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     public String getTransactionType() {
         return transactionType;
     }
@@ -61,7 +73,7 @@ public class Transaction {
     
     //print transaction 
     public String printTransaction() {
-        String str = this.getTransactionType()+" "+this.getPaid()+" "+ this.getTransactionDescription()+" "+ this.getPostBalance();
+        String str = this.getId()+" " +this.getTransactionType()+" "+this.getPaid()+" "+ this.getTransactionDescription()+" "+ this.getPostBalance();
         return str;
     }
     
