@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class CustomerService {
     
-    Database d = new Database();
-    private List<Customer> cList = d.getCustomersDB();
+     Database d = new Database();
+    public  List<Customer> cList = d.getCustomersDB();
    public CustomerService(){
         
        
@@ -33,6 +33,7 @@ public class CustomerService {
    public Customer getCustomer(int id) {
         return cList.get(id-1);
     }
+   
     public void setCustomer(int id, Customer customerIn) {
         cList.set(id-1, customerIn);
     }

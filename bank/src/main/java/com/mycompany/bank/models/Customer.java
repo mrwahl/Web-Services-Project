@@ -44,7 +44,7 @@ public class Customer {
         this.pin = pin;
         
     } */
-
+//getters and setters
     public int getId() {
         return id;
     }
@@ -53,7 +53,7 @@ public class Customer {
         this.id = id;
     }
     
-//getters and setters
+
     public String getName() {
         return name;
     }
@@ -102,16 +102,11 @@ public class Customer {
         return str;
     }
     
-    
     public String printAllAccounts() {
          String allAccs = "";
          for ( int i=0; i<accounts.size(); i++)
              allAccs=allAccs+accounts.get(i).printAccount()+" ";
 	return allAccs;
     }
-    
-    
-    
-    
-    
+      
 } // end of class
