@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Account {
-    private int id;
+    private int accid;
     private int sortCode;
     private int accNumber;
     private String accType;
@@ -26,32 +26,27 @@ public class Account {
     public Account(){
     }
 
-    public Account(int id,int sortCode, int accNumber, String accType, double currentBalance, List<Transaction> transactions) {
-        this.id = id;
+    public Account(int accid,int sortCode, int accNumber, String accType, double currentBalance, List<Transaction> transactions) {
+        this.accid = accid;
         this.sortCode = sortCode;
         this.accNumber = accNumber;
         this.accType = accType;
         this.currentBalance = currentBalance;
         this.transactions = transactions;
     }
-    public Account(int id,int sortCode, int accNumber, String accType, double currentBalance) {
-        this.id = id;
-        this.sortCode = sortCode;
-        this.accNumber = accNumber;
-        this.accType = accType;
-        this.currentBalance = currentBalance;
-        this.transactions = transactions;
-    }
+   
     
 //getters and setters
 
-    public int getId() {
-        return id;
+    public int getAccid() {
+        return accid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAccid(int accid) {
+        this.accid = accid;
     }
+
+   
     
     public int getSortCode() {
         return sortCode;
@@ -88,7 +83,7 @@ public class Account {
     
     // print account
     public String printAccount() {
-        String str = this.getId()+" "+ this.getSortCode()+" "+this.getAccNumber()+" "+ this.getAccType()+" "+ this.getCurrentBalance();
+        String str = this.getAccid()+" "+ this.getSortCode()+" "+this.getAccNumber()+" "+ this.getAccType()+" "+ this.getCurrentBalance();
         return str;
     }
     

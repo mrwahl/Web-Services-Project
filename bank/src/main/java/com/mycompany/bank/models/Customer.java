@@ -16,7 +16,7 @@ import java.util.List;
  */
 @XmlRootElement
 public class Customer {
-    private int id;
+    private int custid;
     private String name;
     private String address;
     private String email;
@@ -27,31 +27,26 @@ public class Customer {
     public Customer(){ 
     }
     
-    public Customer(int id,String name, String address, String email, int pin, List<Account> accounts) {
-        this.id = id;
+    public Customer(int custid,String name, String address, String email, int pin, List<Account> accounts) {
+        this.custid = custid;
         this.name = name;
         this.address = address;
         this.email = email;
         this.pin = pin;
         this.accounts = accounts;
     } 
-    /*
-    public Customer(int id,String name, String address, String email, int pin) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.email = email;
-        this.pin = pin;
-        
-    } */
+    
 //getters and setters
-    public int getId() {
-        return id;
+
+    public int getCustid() {
+        return custid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCustid(int custid) {
+        this.custid = custid;
     }
+
+    
     
 
     public String getName() {
@@ -98,7 +93,7 @@ public class Customer {
     }
     
     public String printCustomer() {
-        String str = this.getId()+" "+ this.getName()+" "+this.getAddress()+ " "+this.getEmail()+" "+this.getPin();
+        String str = this.getCustid()+" "+ this.getName()+" "+this.getAddress()+ " "+this.getEmail()+" "+this.getPin();
         return str;
     }
     

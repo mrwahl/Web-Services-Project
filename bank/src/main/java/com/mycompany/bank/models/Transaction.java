@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Filip
  */
 public class Transaction {
-    private int id;
+    private int transid;
     private String transactionType;
     private Date paid;
     private String transactionDescription;
@@ -21,8 +21,8 @@ public class Transaction {
     public Transaction(){
     }
 
-    public Transaction(int id,String transactionType, String transactionDescription, double postBalance) {
-        this.id = id;
+    public Transaction(int transid,String transactionType, String transactionDescription, double postBalance) {
+        this.transid = transid;
         this.transactionType = transactionType;
         this.paid = new Date();
         this.transactionDescription = transactionDescription;
@@ -30,13 +30,15 @@ public class Transaction {
     }
 //getters and setters
 
-    public int getId() {
-        return id;
+    public int getTransid() {
+        return transid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTransid(int transid) {
+        this.transid = transid;
     }
+
+    
     
     
     public String getTransactionType() {
@@ -73,7 +75,7 @@ public class Transaction {
     
     //print transaction 
     public String printTransaction() {
-        String str = this.getId()+" " +this.getTransactionType()+" "+this.getPaid()+" "+ this.getTransactionDescription()+" "+ this.getPostBalance();
+        String str = this.getTransid()+" " +this.getTransactionType()+" "+this.getPaid()+" "+ this.getTransactionDescription()+" "+ this.getPostBalance();
         return str;
     }
     
