@@ -6,6 +6,7 @@
 package com.mycompany.bank.resources;
 import com.mycompany.bank.models.Account;
 import com.mycompany.bank.models.Customer;
+import com.mycompany.bank.services.AccountService;
 import com.mycompany.bank.services.CustomerService;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -25,7 +26,7 @@ import javax.ws.rs.QueryParam;
 public class CustomerResource {
     
     CustomerService customerService = new CustomerService();
-
+    AccountService accountService = new AccountService();
     // Get all customers
     @GET
     @Produces(MediaType.APPLICATION_JSON)

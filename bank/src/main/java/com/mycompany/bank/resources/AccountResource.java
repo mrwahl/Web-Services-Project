@@ -59,5 +59,17 @@ public class AccountResource {
 	return customerService.getCustomer(cid).getAccounts().get(accounts.size()-1);
     }
     
-    
+   //Get balance for specific customers account
+    @GET
+    @Path("/{customerID}/{accountID}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Account getCustomerAccount(@PathParam("customerID") int cid, @PathParam("accountID") int aid ) {
+        //Get specific customer from customers using id
+        Customer c = customerService.getCustomer(cid);
+        //Get a list of the accounts on that customer
+        List<Account> accounts = c.getAccounts();
+        //Return the specific account from the array of accounts
+	return accounts.get(aid-1);
+    }
+
 }

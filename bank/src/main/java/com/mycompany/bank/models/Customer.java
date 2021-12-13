@@ -85,6 +85,7 @@ public class Customer {
         return accounts;
     }
 
+    
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }

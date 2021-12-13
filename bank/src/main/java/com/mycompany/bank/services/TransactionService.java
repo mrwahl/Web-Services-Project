@@ -16,12 +16,12 @@ import java.util.List;
  * @author Filip
  */
 public class TransactionService {
-    
+    /*
     Database db = new Database();
         
     //customer specify the amount to transfer and account to transfer to
     public Transaction makeTransfer(int accId, Transaction t){
-     // int custId =t.getCustId();
+      int custId =t.getCustId();
      // int accId = t.getAccId()
      //double amount = t.getTransactionAmount();
       makeWithdrawl(custId, accId, t.getTransacAmount());//Transaction model need changes
@@ -37,7 +37,7 @@ public class TransactionService {
         
     public Transaction makeWithdrawl(int custId, int accId, Transaction t){
      
-    }
+    } */
 }
 
     

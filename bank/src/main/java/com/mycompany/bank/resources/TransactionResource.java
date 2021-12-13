@@ -28,7 +28,7 @@ public class TransactionResource {
     
     private TransactionService ts = new TransactionService();
 
-    
+    /*
     //localhost:8080/api/customers/1/accounts/{12345/transactions
     @POST
     @Path("/{accid}")
@@ -44,7 +44,7 @@ public class TransactionResource {
             return ts.makeWithdrawl(accId, accId, t);
         }
        return t;
-   }
+   } */
     
 /*request body for test in postman
     {"transactionType" : "Transfer",    

@@ -6,6 +6,7 @@
 package com.mycompany.bank.services;
 
 import com.mycompany.bank.models.Account;
+import com.mycompany.bank.models.Customer;
 import com.mycompany.myblog.databases.Database;
 import java.util.List;
 
@@ -14,9 +15,10 @@ import java.util.List;
  * @author Filip
  */
 public class AccountService {
+    CustomerService customerService = new CustomerService();  
     Database d = new Database();
     public  List<Account> aList = d.getAccountsDB();
-    
+       
     public AccountService(){
         
     }
@@ -24,11 +26,12 @@ public class AccountService {
     public List<Account> getAllAccount() {
         return aList;
     }
+     
     
     public Account getAccount(int accid) {
         return aList.get(accid-1);
     }
-   
+    
     public void setAccount(int accid, Account accountIn) {
         aList.set(accid-1, accountIn);
     }

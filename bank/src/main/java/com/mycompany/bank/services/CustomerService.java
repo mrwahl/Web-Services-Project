@@ -25,7 +25,7 @@ public class CustomerService {
         
        
    }
-    // get all customers , just to have somehting to test for the API if its working or not
+    // get all customers
    public List<Customer> getAllCustomer() {
         return cList;
     }
@@ -47,9 +47,7 @@ public class CustomerService {
 	return c;
     }
     
-    
-    
-    
+   
     
     
 }
