@@ -5,6 +5,7 @@
  */
 package com.mycompany.bank.services;
 
+import com.mycompany.bank.models.Account;
 import com.mycompany.bank.models.Customer;
 import com.mycompany.bank.models.Transaction;
 import com.mycompany.myblog.databases.Database;

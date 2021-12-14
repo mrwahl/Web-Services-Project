@@ -12,6 +12,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -62,14 +63,50 @@ public class AccountResource {
    //Get balance for specific customers account
     @GET
     @Path("/{customerID}/{accountID}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Account getCustomerAccount(@PathParam("customerID") int cid, @PathParam("accountID") int aid ) {
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getBalancet(@PathParam("customerID") int cid, @PathParam("accountID") int aid ) {
         //Get specific customer from customers using id
         Customer c = customerService.getCustomer(cid);
         //Get a list of the accounts on that customer
         List<Account> accounts = c.getAccounts();
-        //Return the specific account from the array of accounts
+        Account a = accounts.get(aid-1);
+        
+        Double newBalance = a.getCurrentBalance();
+	return "Balance for Customer ID "+cid+" with account ID "+aid+" is " +newBalance;
+        
+    }
+    
+    // Make a withdrawal for a given Customers account.
+    @PUT
+    @Path("/{customerID}/{accountID}/withdraw/{amount}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Account withdrawMoney(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount ) {
+        //Get specific customer from customers using id
+        Customer c = customerService.getCustomer(cid);
+        //Get a list of the accounts on that customer
+        List<Account> accounts = c.getAccounts();
+        //get the account we got from our request.
+        Account a = accounts.get(aid-1);
+        //set the new balance
+        Double newBalance = a.getCurrentBalance()-amount;
+        a.setCurrentBalance(newBalance);
 	return accounts.get(aid-1);
     }
-
+    
+    // Make a lodgement for a given Customers account.
+    @PUT
+    @Path("/{customerID}/{accountID}/lodge/{amount}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Account lodgeMoney(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount ) {
+        //Get specific customer from customers using id
+        Customer c = customerService.getCustomer(cid);
+        //Get a list of the accounts on that customer
+        List<Account> accounts = c.getAccounts();
+        //get the account we got from our request.
+        Account a = accounts.get(aid-1);
+        //set the new balance
+        Double newBalance = a.getCurrentBalance()+amount;
+        a.setCurrentBalance(newBalance);
+	return accounts.get(aid-1);
+    }
 }

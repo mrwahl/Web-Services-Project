@@ -8,6 +8,7 @@ package com.mycompany.bank.models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -79,6 +80,14 @@ public class Account {
     public void setCurrentBalance(double currentBalance) {
         this.currentBalance = currentBalance;
     }
+    
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    } 
     
     
     // print account

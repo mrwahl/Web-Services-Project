@@ -5,11 +5,13 @@
  */
 package com.mycompany.bank.resources;
 
+import com.mycompany.bank.models.Account;
 import com.mycompany.bank.models.Transaction;
 import com.mycompany.bank.services.TransactionService;
 //import com.mycompany.bank.services.TransactionService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -26,7 +28,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class TransactionResource {
     
-    private TransactionService ts = new TransactionService();
+   TransactionService transactionService = new TransactionService();
 
     /*
     //localhost:8080/api/customers/1/accounts/{12345/transactions
@@ -64,5 +66,15 @@ public class TransactionResource {
       "transactionAmount" : 350,
       "transferToAccountNumner" :  "12345"
     }
-*/
+*/  /*
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Double postWithdraw(Account c,Double amount) {
+        
+        return transactionService.transferMoneyFromOutgoing(c, amount);
+    } */
+    
+    
+    
 }
