@@ -142,10 +142,11 @@ public class AccountResource {
         return accounts.get(aid - 1);
     }
 
-    @PUT
+    @POST
     @Path("/{customerID}/{accountID}/{recieverCustId}/{recieverAccId}/transfer/{amount}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String makeTransfer(@PathParam("customerID") int cid, @PathParam("accountID") int aid, @PathParam("recieverCustId") int recieverCid, @PathParam("recieverAccId") int recieverAid, @PathParam("amount") Double amount) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String makeTransfer(@PathParam("customerID") int cid, @PathParam("accountID") int aid, @PathParam("recieverCustId") int recieverCid, @PathParam("recieverAccId") int recieverAid, @PathParam("amount") Double amount, Transaction transaction) {
 
         //Find account from
         Customer cFrom = customerService.getCustomer(cid);
@@ -169,6 +170,51 @@ public class AccountResource {
         //Update the new balance
         a.setCurrentBalance(newBalanceA);
         b.setCurrentBalance(newBalanceB);
+        //sender transaction 
+        /// Now we need to create a transaction of type withdraw
+        List<Transaction> transactions = a.getTransactions();
+        //assign an id to the transaction
+        transaction.setTransid(transactions.size() + 1);
+        //set the post balance.
+        transaction.setPostBalance(newBalanceA);
+        //assign a new date
+        Date d = new Date();
+        transaction.setPaid(d);
+        //assign lodgement as a type of transaction
+        String type = "Transfered";
+        transaction.setTransactionType(type);
+        //Add the new transaction to the list of transactions
+        transactions.add(transaction);
+        //Set the list of transactions within the account to the updated list
+        a.setTransactions(transactions);
+        //update the account
+        accountService.setAccount(aid, a);
+        
+        
+        // receiver transaction
+        List<Transaction> transactions2 = b.getTransactions();
+        //assign an id to the transaction
+        transaction.setTransid(transactions2.size() + 1);
+        //set the post balance.
+        transaction.setPostBalance(newBalanceB);
+        //assign a new date
+        Date d2 = new Date();
+        transaction.setPaid(d2);
+        //assign lodgement as a type of transaction
+        String type2 = "Transfer";
+        transaction.setTransactionType(type2);
+        //Add the new transaction to the list of transactions
+        transactions2.add(transaction);
+        //Set the list of transactions within the account to the updated list
+        b.setTransactions(transactions2);
+        //update the account
+        accountService.setAccount(recieverAid, b);
+        
+        
+        
+        
+        
+        
         return "Sender's old balance: " + oldBalanceA + "Sender's new balance: " + newBalanceA + "Receiver's old balance: " + oldBalanceB + "Receiver's new balance: " + newBalanceB;
     }
 
