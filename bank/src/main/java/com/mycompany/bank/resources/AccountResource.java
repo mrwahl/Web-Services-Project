@@ -6,8 +6,10 @@
 package com.mycompany.bank.resources;
 import com.mycompany.bank.models.Account;
 import com.mycompany.bank.models.Customer;
+import com.mycompany.bank.models.Transaction;
 import com.mycompany.bank.services.CustomerService;
 import com.mycompany.bank.services.AccountService;
+import com.mycompany.bank.services.TransactionService;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -27,7 +29,7 @@ import javax.ws.rs.QueryParam;
 public class AccountResource {
    CustomerService customerService = new CustomerService();
    AccountService accountService = new AccountService();
-    
+   TransactionService transactionService = new TransactionService();
    
      /* how to post a request in JSON to create a new account for a customer 
         /*
@@ -80,7 +82,7 @@ public class AccountResource {
     @PUT
     @Path("/{customerID}/{accountID}/withdraw/{amount}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Account withdrawMoney(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount ) {
+    public Account withdrawMoney(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount, Transaction t) {
         //Get specific customer from customers using id
         Customer c = customerService.getCustomer(cid);
         //Get a list of the accounts on that customer
@@ -90,17 +92,22 @@ public class AccountResource {
         //set the new balance
         Double newBalance = a.getCurrentBalance()-amount;
         a.setCurrentBalance(newBalance);
+        
+        
 	return accounts.get(aid-1);
     }
+    
+    //get all transactions of specific customer's account
     @GET
     @Path("/{customerID}/{accountID}/allTransactions")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllTransaction(@PathParam("customerID") int cid, @PathParam("accountID") int aid){
+    public String getAllTransactions(@PathParam("customerID") int cid, @PathParam("accountID") int aid){
     Customer c = customerService.getCustomer(cid);
         List<Account> accounts = c.getAccounts();
         Account a = accounts.get(aid-1);
         return accounts.get(aid-1).printAllTransactions();
-}
+    }
+    
     // Make a lodgement for a given Customers account.
     @PUT
     @Path("/{customerID}/{accountID}/lodge/{amount}")
@@ -114,24 +121,27 @@ public class AccountResource {
         //set the new balance
         Double newBalance = a.getCurrentBalance()+amount;
         a.setCurrentBalance(newBalance);
-	return accounts.get(aid-1); //Get specific customer from customers using id
+       
+        return accounts.get(aid-1); //Get specific customer from customers using id
      }
     
     @PUT
-    @Path("/{customerID}/{accountID}/transfer/{amount}")
+    @Path("/{customerID}/{accountID}/{recieverCustId}/{recieverAccId}/transfer/{amount}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String makeTransfer(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount){
+    public String makeTransfer(@PathParam("customerID") int cid, @PathParam("accountID") int aid, @PathParam("recieverCustId") int recieverCid, @PathParam("recieverAccId") int recieverAid, @PathParam("amount") Double amount){
+   
+        
     //Find account from
     Customer cFrom = customerService.getCustomer(cid);
     //Find account to
-    Customer cTo = customerService.getCustomer(aid);
+    Customer cTo = customerService.getCustomer(recieverCid);
     //Create a List of all accounts for A
     List<Account> accounts = cFrom.getAccounts();
     //Create a List of all accounts for B\
     List<Account> accounts2 = cTo.getAccounts();
     //Get the ID
     Account a = accounts.get(cid-1);
-    Account b = accounts2.get(aid-1);
+    Account b = accounts2.get(recieverAid-1);
 
     Double oldBalanceA, oldBalanceB;
     oldBalanceA = a.getCurrentBalance();
@@ -145,5 +155,7 @@ public class AccountResource {
     b.setCurrentBalance(newBalanceB);
     
     return "Sender's old balance: "+oldBalanceA+ "Sender's new balance: "+newBalanceA+ "Receiver's old balance: "+oldBalanceB+"Receiver's new balance: "+newBalanceB;
-    }
+     
+        
+      }
 }
