@@ -33,19 +33,8 @@ public class CustomerResource {
     public List<Customer> getCustomersJSON() {
         return customerService.getAllCustomer();
     }
-   
+  
     
-    /*
-    e.g. how to send the post request to create a customer
-    { 
-    "name": "batman",
-    "address": "blueroad",
-    "email": "fakeEMAIL",
-    "pin":7800,
-    "accounts": 
-    }
-    
-    */
     //create a new Customer with an account . You can create a customer with or without an account.
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -53,7 +42,7 @@ public class CustomerResource {
     public Customer postCustomer(Customer c) {
         
         return customerService.createCustomer(c);
-    } 
+    }
     
     //Get a specific customer based on their id 
     @GET
