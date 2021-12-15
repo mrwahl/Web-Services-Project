@@ -41,7 +41,7 @@ public class Database {
         transactionDB2.add(t3);
         // account data
         Account a1 = new Account (1,889900, 12345, "Current", 700.0 , transactionDB);
-        Account a2 = new Account (2,774489, 54321, "Saving", 800.0 , transactionDB2);
+        Account a2 = new Account (2,774489, 54321, "Saving", 800.0 , transactionDB);
         Account a3 = new Account (3,556644, 54321, "Saving", 450.3 , transactionDB);
         Account a4 = new Account (4,001122, 56776, "Current", 840.1 , transactionDB2);
         Account a5 = new Account (5,223355, 98878, "Saving", 800.0 , transactionDB2);

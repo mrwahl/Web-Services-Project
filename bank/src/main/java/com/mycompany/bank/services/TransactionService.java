@@ -17,28 +17,34 @@ import java.util.List;
  * @author Filip
  */
 public class TransactionService {
-    /*
-    Database db = new Database();
-        
-    //customer specify the amount to transfer and account to transfer to
-    public Transaction makeTransfer(int accId, Transaction t){
-      int custId =t.getCustId();
-     // int accId = t.getAccId()
-     //double amount = t.getTransactionAmount();
-      makeWithdrawl(custId, accId, t.getTransacAmount());//Transaction model need changes
-      makeLodgement(receiverCustId, receiverAccId, t.getTransacAmount()); 
-      t.setTransactionDescription(t.getTransactionDescription());
-      t.setDate(new Date()); // Transaction model class Date variable name should be date
-      return t;
+   
+    Database d = new Database();
+    public List<Transaction> tList = d.getTransactionsDB();
+
+    public TransactionService() {
+    }
+
+    //get all transactions
+    public List<Transaction> getAllTransactions(){
+        return tList;
     }
     
-    public Transaction makeLodgement(int custId, int accId, Transaction t){
+    public Transaction getTransaction(int id){
+        return tList.get(id-1);
+    }
     
-    }   
-        
-    public Transaction makeWithdrawl(int custId, int accId, Transaction t){
-     
-    } */
+    public void setTransaction(int id, Transaction transid){
+        tList.set(id-1, transid);
+    }
+    
+    public Transaction createTransaction(Transaction t) {
+	t.setTransid(tList.size() + 1);
+	tList.add(t);
+	
+        System.out.println("Updated Message:"+t.printTransaction());
+	return t;
+    }
+    
 }
 
     
