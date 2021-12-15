@@ -6,8 +6,11 @@
 package com.mycompany.bank.resources;
 
 import com.mycompany.bank.models.Account;
+import com.mycompany.bank.models.Customer;
 import com.mycompany.bank.models.Transaction;
+import com.mycompany.bank.services.CustomerService;
 import com.mycompany.bank.services.TransactionService;
+import java.util.List;
 //import com.mycompany.bank.services.TransactionService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -24,31 +27,55 @@ import javax.ws.rs.core.MediaType;
  */
 
 @Path("/transactions")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+
 public class TransactionResource {
     
-   TransactionService transactionService = new TransactionService();
+   /*TransactionService transactionService = new TransactionService();
 
-    /*
-    //localhost:8080/api/customers/1/accounts/{12345/transactions
-    @POST
-    @Path("/{accid}")
-    public Transaction makeTransaction(@PathParam("accid") int accId, Transaction t){
-        accId = accId-1;
-        if(t.getTransactionType().equals("transfer")){
-            return ts.makeTransfer(accId, t);
-        }
-         else if(t.getTransactionType().equals("withdrawal")){
-            return ts.makeLodgement(accId, accId, t);
-        }
-        else if(t.getTransactionType().equals("lodgement")){
-            return ts.makeWithdrawl(accId, accId, t);
-        }
-       return t;
-   } */
+   CustomerService customerService = new CustomerService();
+
+
+   @PUT
+    @Path("/{customerID}/{accountID}/{amount}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Account lodgeMoney(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount ) {
+       Customer c = customerService.getCustomer(cid);
+        //Get a list of the accounts on that customer
+        List<Account> accounts = c.getAccounts();
+        //get the account we got from our request.
+        Account a = accounts.get(aid-1);
+        //set the new balance
+        Double newBalance = a.getCurrentBalance()+amount;
+        a.setCurrentBalance(newBalance);
+	return accounts.get(aid-1); //Get specific custom
+   /* @PUT
+    @Path("/{customerID}/{accountID}/{amount}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Account makeTransaction(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount){
+    //Find account from
+    Customer cFrom = customerService.getCustomer(cid);
+    //Find account to
+    Customer cTo = customerService.getCustomer(aid);
+    //Create a List of all accounts for A
+    List<Account> accounts = cFrom.getAccounts();
+    //Create a List of all accounts for B\
+    List<Account> accounts2 = cTo.getAccounts();
+    //Get the ID
+    Account a = accounts.get(aid-1);
+    Account b = accounts2.get(cid-1);
+
+    Double balance = a.getCurrentBalance()-amount;
+    //Update the new balance
+    a.setCurrentBalance(balance);
+    //Get balance from B
+    Double balance2 = b.getCurrentBalance()+amount;
+    //Send it to the new account
+    b.setCurrentBalance(balance2);
     
-/*request body for test in postman
+    return accounts.get(aid-1);*/
+   } 
+    
+/*request body " test in postman
     {"transactionType" : "Transfer",    
       "transactionDescription : "December rent"
       "transactionAmount" : 350,
@@ -77,4 +104,4 @@ public class TransactionResource {
     
     
     
-}
+

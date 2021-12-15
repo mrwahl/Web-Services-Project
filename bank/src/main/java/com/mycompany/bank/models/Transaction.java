@@ -14,7 +14,7 @@ import java.util.Date;
 public class Transaction {
     private int transid;
     private String transactionType;
-    private Date paid;
+    private Date date;
     private String transactionDescription;
     private double postBalance;
     
@@ -24,7 +24,7 @@ public class Transaction {
     public Transaction(int transid,String transactionType, String transactionDescription, double postBalance) {
         this.transid = transid;
         this.transactionType = transactionType;
-        this.paid = new Date();
+        this.date = new Date();
         this.transactionDescription = transactionDescription;
         this.postBalance = postBalance;
     }
@@ -50,11 +50,11 @@ public class Transaction {
     }
 
     public Date getPaid() {
-        return paid;
+        return date;
     }
 
     public void setPaid(Date paid) {
-        this.paid = paid;
+        this.date = paid;
     }
 
     public String getTransactionDescription() {

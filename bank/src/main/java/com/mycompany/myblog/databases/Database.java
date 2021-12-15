@@ -35,14 +35,25 @@ public class Database {
         t1 = new Transaction (1,"Credit","Mirror", 500.0);
         t2 = new Transaction (2,"Debit","Keys", 450.0); 
         t3 = new Transaction (3,"Credit","Burgers", 400.0);
+        
         transactionDB2.add(t1);
         transactionDB2.add(t2);
         transactionDB2.add(t3);
         // account data
         Account a1 = new Account (1,889900, 12345, "Current", 700.0 , transactionDB);
         Account a2 = new Account (2,774489, 54321, "Saving", 800.0 , transactionDB2);
+        Account a3 = new Account (3,556644, 54321, "Saving", 450.3 , transactionDB);
+        Account a4 = new Account (4,001122, 56776, "Current", 840.1 , transactionDB2);
+        Account a5 = new Account (5,223355, 98878, "Saving", 800.0 , transactionDB2);
+        Account a6 = new Account (6,770022, 23909, "Current", 1200.40 , transactionDB2);
         accountDB.add(a1);
-        accountDB2.add(a2);
+        accountDB.add(a2);
+        accountDB.add(a3);
+        accountDB2.add(a4);
+        accountDB2.add(a5);
+        accountDB2.add(a6);
+        
+        
         // customers
         Customer c1 = new Customer (1,"John Blue","123 yellow road", "john123@gmail.com", 4545 , accountDB);
         Customer c2 = new Customer (2,"Leo","5 blue road", "leo@gmail.com", 6666 , accountDB2);

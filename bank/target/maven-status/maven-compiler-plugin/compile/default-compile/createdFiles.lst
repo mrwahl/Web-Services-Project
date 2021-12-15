@@ -1,11 +1,11 @@
 com\mycompany\bank\models\Customer.class
-com\mycompany\bank\models\Transaction.class
-com\mycompany\bank\models\Account.class
-com\mycompany\bank\resources\AccountResource.class
-com\mycompany\bank\services\AccountService.class
 com\mycompany\bank\services\CustomerService.class
-com\mycompany\bank\services\TransactionService.class
 com\mycompany\bank\JAXRSConfiguration.class
 com\mycompany\bank\resources\CustomerResource.class
 com\mycompany\bank\resources\TransactionResource.class
 com\mycompany\myblog\databases\Database.class
+com\mycompany\bank\models\Transaction.class
+com\mycompany\bank\models\Account.class
+com\mycompany\bank\resources\AccountResource.class
+com\mycompany\bank\services\AccountService.class
+com\mycompany\bank\services\TransactionService.class

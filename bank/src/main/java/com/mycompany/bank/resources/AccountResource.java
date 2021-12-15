@@ -92,14 +92,21 @@ public class AccountResource {
         a.setCurrentBalance(newBalance);
 	return accounts.get(aid-1);
     }
-    
+    @GET
+    @Path("/{customerID}/{accountID}/allTransactions")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllTransaction(@PathParam("customerID") int cid, @PathParam("accountID") int aid){
+    Customer c = customerService.getCustomer(cid);
+        List<Account> accounts = c.getAccounts();
+        Account a = accounts.get(aid-1);
+        return accounts.get(aid-1).printAllTransactions();
+}
     // Make a lodgement for a given Customers account.
     @PUT
     @Path("/{customerID}/{accountID}/lodge/{amount}")
     @Produces(MediaType.APPLICATION_JSON)
     public Account lodgeMoney(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount ) {
-        //Get specific customer from customers using id
-        Customer c = customerService.getCustomer(cid);
+       Customer c = customerService.getCustomer(cid);
         //Get a list of the accounts on that customer
         List<Account> accounts = c.getAccounts();
         //get the account we got from our request.
@@ -107,6 +114,36 @@ public class AccountResource {
         //set the new balance
         Double newBalance = a.getCurrentBalance()+amount;
         a.setCurrentBalance(newBalance);
-	return accounts.get(aid-1);
+	return accounts.get(aid-1); //Get specific customer from customers using id
+     }
+    
+    @PUT
+    @Path("/{customerID}/{accountID}/transfer/{amount}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String makeTransfer(@PathParam("customerID") int cid, @PathParam("accountID") int aid,@PathParam("amount") Double amount){
+    //Find account from
+    Customer cFrom = customerService.getCustomer(cid);
+    //Find account to
+    Customer cTo = customerService.getCustomer(aid);
+    //Create a List of all accounts for A
+    List<Account> accounts = cFrom.getAccounts();
+    //Create a List of all accounts for B\
+    List<Account> accounts2 = cTo.getAccounts();
+    //Get the ID
+    Account a = accounts.get(cid-1);
+    Account b = accounts2.get(aid-1);
+
+    Double oldBalanceA, oldBalanceB;
+    oldBalanceA = a.getCurrentBalance();
+    oldBalanceB = b.getCurrentBalance();
+    
+    Double newBalanceA = oldBalanceA-amount;
+    Double newBalanceB = oldBalanceB+amount;
+    
+    //Update the new balance
+    a.setCurrentBalance(newBalanceA);
+    b.setCurrentBalance(newBalanceB);
+    
+    return "Sender's old balance: "+oldBalanceA+ "Sender's new balance: "+newBalanceA+ "Receiver's old balance: "+oldBalanceB+"Receiver's new balance: "+newBalanceB;
     }
 }
