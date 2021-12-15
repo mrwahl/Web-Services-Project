@@ -55,7 +55,7 @@ public class AccountResource {
     @GET
     @Path("/{customerID}/{accountID}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String getBalancet(@PathParam("customerID") int cid, @PathParam("accountID") int aid) {
+    public String getBalance(@PathParam("customerID") int cid, @PathParam("accountID") int aid) {
         //Get specific customer from customers using id
         Customer c = customerService.getCustomer(cid);
         //Get a list of the accounts on that customer

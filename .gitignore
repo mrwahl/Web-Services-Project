@@ -1,3 +1,8 @@
 
 *.class
 bank/target/classes/.netbeans_automatic_build
+bank/target/classes/com/mycompany/bank/models/Account.class
+bank/target/classes/com/mycompany/bank/models/Account.class
+bank/target/classes/com/mycompany/bank/models/Customer.class
+*.class
+*.class
