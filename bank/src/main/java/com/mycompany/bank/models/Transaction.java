@@ -12,16 +12,17 @@ import java.util.Date;
  * @author Filip
  */
 public class Transaction {
+
     private int transid;
     private String transactionType;
     private Date date;
     private String transactionDescription;
     private double postBalance;
-    
-    public Transaction(){
+
+    public Transaction() {
     }
 
-    public Transaction(int transid,String transactionType, String transactionDescription, double postBalance) {
+    public Transaction(int transid, String transactionType, String transactionDescription, double postBalance) {
         this.transid = transid;
         this.transactionType = transactionType;
         this.date = new Date();
@@ -38,9 +39,6 @@ public class Transaction {
         this.transid = transid;
     }
 
-    
-    
-    
     public String getTransactionType() {
         return transactionType;
     }
@@ -72,12 +70,11 @@ public class Transaction {
     public void setPostBalance(double postBalance) {
         this.postBalance = postBalance;
     }
-    
+
     //print transaction 
     public String printTransaction() {
-        String str = this.getTransid()+" " +this.getTransactionType()+" "+this.getPaid()+" "+ this.getTransactionDescription()+" "+ this.getPostBalance();
+        String str = this.getTransid() + " " + this.getTransactionType() + " " + this.getPaid() + " " + this.getTransactionDescription() + " " + this.getPostBalance();
         return str;
     }
-    
-    
+
 }

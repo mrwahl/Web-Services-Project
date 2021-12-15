@@ -15,38 +15,33 @@ import java.util.List;
  * @author Filip
  */
 public class AccountService {
-    CustomerService customerService = new CustomerService();  
+
+    CustomerService customerService = new CustomerService();
     Database d = new Database();
-    public  List<Account> aList = d.getAccountsDB();
-       
-    public AccountService(){
-        
+    public List<Account> aList = d.getAccountsDB();
+
+    public AccountService() {
+
     }
-    
+
     public List<Account> getAllAccount() {
         return aList;
     }
-     
-    
+
     public Account getAccount(int accid) {
-        return aList.get(accid-1);
+        return aList.get(accid - 1);
     }
-    
+
     public void setAccount(int accid, Account accountIn) {
-        aList.set(accid-1, accountIn);
+        aList.set(accid - 1, accountIn);
     }
-    
-    
+
     public Account createAccount(Account a) {
-	a.setAccid(aList.size() + 1);
-	aList.add(a);
-	
-        System.out.println("Updated Message:"+a.printAccount());
-	return a;
+        a.setAccid(aList.size() + 1);
+        aList.add(a);
+
+        System.out.println("Updated Message:" + a.printAccount());
+        return a;
     }
-    
-    
-    
-    
-    
+
 }

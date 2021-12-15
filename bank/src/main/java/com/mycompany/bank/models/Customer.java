@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package com.mycompany.bank.models;
+
 import java.util.ArrayList;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
-
 
 /**
  *
@@ -16,28 +16,27 @@ import java.util.List;
  */
 @XmlRootElement
 public class Customer {
+
     private int custid;
     private String name;
     private String address;
     private String email;
     private int pin;
     private List<Account> accounts = new ArrayList<>();
-    
-    
-    public Customer(){ 
+
+    public Customer() {
     }
-    
-    public Customer(int custid,String name, String address, String email, int pin, List<Account> accounts) {
+
+    public Customer(int custid, String name, String address, String email, int pin, List<Account> accounts) {
         this.custid = custid;
         this.name = name;
         this.address = address;
         this.email = email;
         this.pin = pin;
         this.accounts = accounts;
-    } 
-    
-//getters and setters
+    }
 
+//getters and setters
     public int getCustid() {
         return custid;
     }
@@ -45,9 +44,6 @@ public class Customer {
     public void setCustid(int custid) {
         this.custid = custid;
     }
-
-    
-    
 
     public String getName() {
         return name;
@@ -85,24 +81,25 @@ public class Customer {
         return accounts;
     }
 
-    
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
-    public void addAccount(Account account){
+
+    public void addAccount(Account account) {
         (this.accounts).add(account);
     }
-    
+
     public String printCustomer() {
-        String str = this.getCustid()+" "+ this.getName()+" "+this.getAddress()+ " "+this.getEmail()+" "+this.getPin();
+        String str = this.getCustid() + " " + this.getName() + " " + this.getAddress() + " " + this.getEmail() + " " + this.getPin();
         return str;
     }
-    
+
     public String printAllAccounts() {
-         String allAccs = "";
-         for ( int i=0; i<accounts.size(); i++)
-             allAccs=allAccs+accounts.get(i).printAccount()+" ";
-	return allAccs;
+        String allAccs = "";
+        for (int i = 0; i < accounts.size(); i++) {
+            allAccs = allAccs + accounts.get(i).printAccount() + " ";
+        }
+        return allAccs;
     }
-      
+
 } // end of class

@@ -17,7 +17,7 @@ import java.util.List;
  * @author Filip
  */
 public class TransactionService {
-   
+
     Database d = new Database();
     public List<Transaction> tList = d.getTransactionsDB();
 
@@ -25,26 +25,24 @@ public class TransactionService {
     }
 
     //get all transactions
-    public List<Transaction> getAllTransactions(){
+    public List<Transaction> getAllTransactions() {
         return tList;
     }
-    
-    public Transaction getTransaction(int id){
-        return tList.get(id-1);
-    }
-    
-    public void setTransaction(int id, Transaction transid){
-        tList.set(id-1, transid);
-    }
-    
-    public Transaction createTransaction(Transaction t) {
-	t.setTransid(tList.size() + 1);
-	tList.add(t);
-	
-        System.out.println("Updated Message:"+t.printTransaction());
-	return t;
-    }
-    
-}
 
-    
+    public Transaction getTransaction(int id) {
+        return tList.get(id - 1);
+    }
+
+    public void setTransaction(int id, Transaction transid) {
+        tList.set(id - 1, transid);
+    }
+
+    public Transaction createTransaction(Transaction t) {
+        t.setTransid(tList.size() + 1);
+        tList.add(t);
+
+        System.out.println("Updated Message:" + t.printTransaction());
+        return t;
+    }
+
+}

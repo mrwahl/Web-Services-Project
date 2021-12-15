@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.bank.resources;
+
 import com.mycompany.bank.models.Account;
 import com.mycompany.bank.models.Customer;
 import com.mycompany.bank.services.AccountService;
@@ -17,6 +18,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.QueryParam;
+
 /**
  *
  * @author Filip
@@ -24,36 +26,33 @@ import javax.ws.rs.QueryParam;
 
 @Path("/customers")
 public class CustomerResource {
-    
+
     CustomerService customerService = new CustomerService();
     AccountService accountService = new AccountService();
+
     // Get all customers
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Customer> getCustomersJSON() {
+    public List<Customer> getCustomers() {
         return customerService.getAllCustomer();
     }
-  
-    
-    //create a new Customer with an account . You can create a customer with or without an account.
+
+    //Create a new Customer with an account . You can create a customer with or without an account.
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Customer postCustomer(Customer c) {
-        
+
         return customerService.createCustomer(c);
     }
-    
+
     //Get a specific customer based on their id 
     @GET
     @Path("/{customerID}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Customer getSpecificCustomer(@PathParam("customerID") int cID ) {
+    public Customer getSpecificCustomer(@PathParam("customerID") int cID) {
         //gets customer for CustomerServices and returns it
-	return customerService.getCustomer(cID);
+        return customerService.getCustomer(cID);
     }
-    
-    
-    
-    
+
 }
