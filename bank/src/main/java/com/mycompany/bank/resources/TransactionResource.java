@@ -101,7 +101,7 @@ public class TransactionResource {
         return "Sender's old balance: " + oldBalanceA + "Sender's new balance: " + newBalanceA + "Receiver's old balance: " + oldBalanceB + "Receiver's new balance: " + newBalanceB;
     }
 
-    // Get all transactions
+    // Get all transactions of the specific accounts of a specific customer
     @GET
     @Path("/{customerID}/{accountID}")
     @Produces(MediaType.APPLICATION_JSON)
