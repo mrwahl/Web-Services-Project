@@ -31,7 +31,7 @@ public class AccountResource {
 
     //create a new account for an existing customer.
     @POST
-    @Path("/{customerID}/createAccount")
+    @Path("/{customerID}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Account addCustomerAccount(@PathParam("customerID") int cid, Account account) {
@@ -69,7 +69,7 @@ public class AccountResource {
 
     // Make a withdrawal for a given Customers account.
     @POST
-    @Path("/{customerID}/{accountID}/withdraw/{amount}")
+    @Path("/{customerID}/{accountID}/withdrawals/{amount}")
     @Produces(MediaType.APPLICATION_JSON)
     public Account withdrawMoney(@PathParam("customerID") int cid, @PathParam("accountID") int aid, @PathParam("amount") Double amount, Transaction transaction) {
         //Get specific customer from customers using id
@@ -104,7 +104,7 @@ public class AccountResource {
 
     // Make a lodgement for a given Customers account.
     @POST
-    @Path("/{customerID}/{accountID}/lodge/{amount}")
+    @Path("/{customerID}/{accountID}/lodgements/{amount}")
     @Produces(MediaType.APPLICATION_JSON)
     public Account lodgeMoney(@PathParam("customerID") int cid, @PathParam("accountID") int aid, @PathParam("amount") Double amount, Transaction transaction) {
         Customer c = customerService.getCustomer(cid);
