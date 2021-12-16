@@ -103,13 +103,13 @@ public class TransactionResource {
 
     // Get all transactions
     @GET
-    @Path("/{customerID}/{accountID}/allTransactions")
+    @Path("/{customerID}/{accountID}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllTransactions(@PathParam("customerID") int cid, @PathParam("accountID") int aid) {
+    public List<Transaction> getAllTransactions(@PathParam("customerID") int cid, @PathParam("accountID") int aid) {
         Customer c = customerService.getCustomer(cid);
         List<Account> accounts = c.getAccounts();
         Account a = accounts.get(aid - 1);
-        return accounts.get(aid - 1).printAllTransactions();
+        return a.getTransactions();
     }
 
 }
