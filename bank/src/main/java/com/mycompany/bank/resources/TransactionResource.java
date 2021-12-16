@@ -98,7 +98,7 @@ public class TransactionResource {
         //update the account
         accountService.setAccount(recieverAid, b);
 
-        return "Sender's old balance: " + oldBalanceA + "Sender's new balance: " + newBalanceA + "Receiver's old balance: " + oldBalanceB + "Receiver's new balance: " + newBalanceB;
+        return "Sender's old balance: " + oldBalanceA + " Sender's new balance: " + newBalanceA + " Receiver's old balance: " + oldBalanceB + " Receiver's new balance: " + newBalanceB;
     }
 
     // Get all transactions of the specific accounts of a specific customer
