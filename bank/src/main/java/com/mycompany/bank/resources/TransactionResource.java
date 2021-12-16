@@ -32,7 +32,7 @@ public class TransactionResource {
     TransactionService transactionService = new TransactionService();
 
     @POST
-    @Path("/{customerID}/{accountID}/{recieverCustId}/{recieverAccId}/transfer/{amount}")
+    @Path("/{customerID}/{accountID}/{recieverCustId}/{recieverAccId}/transfers/{amount}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public String makeTransfer(@PathParam("customerID") int cid, @PathParam("accountID") int aid, @PathParam("recieverCustId") int recieverCid, @PathParam("recieverAccId") int recieverAid, @PathParam("amount") Double amount, Transaction transaction) {
@@ -105,7 +105,7 @@ public class TransactionResource {
     @GET
     @Path("/{customerID}/{accountID}/allTransactions")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllTransaction(@PathParam("customerID") int cid, @PathParam("accountID") int aid) {
+    public String getAllTransactions(@PathParam("customerID") int cid, @PathParam("accountID") int aid) {
         Customer c = customerService.getCustomer(cid);
         List<Account> accounts = c.getAccounts();
         Account a = accounts.get(aid - 1);
